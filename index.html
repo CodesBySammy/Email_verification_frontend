@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="verification-card">
+            <div class="card-header">
+                <h1>Email Verification</h1>
+                <p>Verify your email address to continue</p>
+            </div>
+            
+            <!-- Step 1: Email Input -->
+            <div class="step" id="step1">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email address" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <button class="btn-primary" onclick="sendOTP()">Send Verification Code</button>
+            </div>
+            
+            <!-- Step 2: OTP Input (Initially Hidden) -->
+            <div class="step" id="step2" style="display: none;">
+                <div class="otp-instructions">
+                    <p>We've sent a 6-digit verification code to <span id="emailDisplay"></span></p>
+                </div>
+                
+                <div class="otp-container">
+                    <div class="otp-inputs">
+                        <input type="text" id="otp1" maxlength="1" oninput="moveToNext(1)" onkeyup="handleOtpNavigation(event, 1)">
+                        <input type="text" id="otp2" maxlength="1" oninput="moveToNext(2)" onkeyup="handleOtpNavigation(event, 2)">
+                        <input type="text" id="otp3" maxlength="1" oninput="moveToNext(3)" onkeyup="handleOtpNavigation(event, 3)">
+                        <input type="text" id="otp4" maxlength="1" oninput="moveToNext(4)" onkeyup="handleOtpNavigation(event, 4)">
+                        <input type="text" id="otp5" maxlength="1" oninput="moveToNext(5)" onkeyup="handleOtpNavigation(event, 5)">
+                        <input type="text" id="otp6" maxlength="1" onkeyup="handleOtpNavigation(event, 6)">
+                    </div>
+                    <span class="error-message" id="otpError"></span>
+                </div>
+                
+                <div class="timer" id="timer">
+                    <p>Code expires in: <span id="countdown">10:00</span></p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn-primary" onclick="verifyOTP()">Verify Email</button>
+                    <button class="btn-secondary" onclick="resendOTP()">Resend Code</button>
+                    <button class="btn-link" onclick="changeEmail()">Change Email Address</button>
+                </div>
+            </div>
+            
+            <!-- Step 3: Success Message (Initially Hidden) -->
+            <div class="step success-message" id="step3" style="display: none;">
+                <div class="success-icon">✓</div>
+                <h2>Email Verified Successfully!</h2>
+                <p>Your email address <span id="verifiedEmail"></span> has been verified.</p>
+                <button class="btn-primary" onclick="resetForm()">Verify Another Email</button>
+            </div>
+            
+            <!-- Loading Spinner -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+</body>
+</html>
