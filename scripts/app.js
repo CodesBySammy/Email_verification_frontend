@@ -1,5 +1,5 @@
 // Configuration - Update with your Vercel deployment URL
-const API_BASE_URL = 'https://email-verification-api-three.vercel.app'; // Replace with your actual Vercel URL
+const API_BASE_URL = 'https://email-verification-api-psi.vercel.app/'; // Replace with your actual Vercel URL
 
 // Global variables
 let countdownInterval;
@@ -286,4 +286,5 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Initialize the application when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', init);
